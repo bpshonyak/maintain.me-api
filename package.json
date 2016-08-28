@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/bpshonyak/maintain.me-api/issues"
   },
-  "homepage": "https://github.com/bpshonyak/maintain.me-api#readme"
+  "homepage": "https://github.com/bpshonyak/maintain.me-api#readme",
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "express-jwt": "^3.4.0",
+    "mongoose": "^4.5.10"
+  }
 }
