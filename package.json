@@ -1,0 +1,22 @@
+{
+  "name": "maintain.me-api",
+  "version": "0.0.1",
+  "description": "api for maintain.me",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bpshonyak/maintain.me-api.git"
+  },
+  "keywords": [
+    "sexy"
+  ],
+  "author": "Bogdan Pshonyak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bpshonyak/maintain.me-api/issues"
+  },
+  "homepage": "https://github.com/bpshonyak/maintain.me-api#readme"
+}
