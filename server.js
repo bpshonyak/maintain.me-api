@@ -119,24 +119,17 @@ app.post('/task/delete', authenticate, function(req, res) {
 
 app.post('/task/update', authenticate, function(req, res) {
 
-  //...
+  var project_id = req.body.project_id;
+  var task = req.body.task;
+
+  projectController.updateTask(project_id, task, function (err, tasks) {
+    if(err)
+      res.json(err);
+
+    res.json(tasks);
+  });
 
 });
-
-/**
- * Helper Funtions
- */
-
-function getProjects(req, res) {
-    res.json({
-        'PurpleTree': {
-            members: ['alex', 'tim', 'sarah']
-        },
-        'Swurveys': {
-            members: ['bogdan', 'preston']
-        }
-    });
-}
 
 app.listen(3003, function () {
   console.log('Server listening on port 3003!');
