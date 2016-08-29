@@ -90,6 +90,21 @@ app.post('/task/add', authenticate, function(req, res) {
 
 });
 
+app.post('/task/delete', authenticate, function(req, res) {
+
+  var project_id = req.body.project_id;
+  var task_id = req.body.task_id;
+
+  //...
+
+});
+
+app.post('/task/update', authenticate, function(req, res) {
+
+  //...
+
+});
+
 /**
  * Helper Funtions
  */

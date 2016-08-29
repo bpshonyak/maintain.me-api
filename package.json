@@ -22,6 +22,7 @@
   "homepage": "https://github.com/bpshonyak/maintain.me-api#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "crypto": "0.0.3",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "express-jwt": "^3.4.0",
