@@ -13,6 +13,29 @@ exports.createProject = (user_id, cb) => {
 
 }
 
+exports.getTasks = (project_id, cb) => {
+
+    Project.findOne({ _id: project_id }, (err, existingProject) => {
+
+        if (err)
+            return cb(err);
+
+        if (!existingProject) {
+
+            var err = {
+                  msg: 'Project could not be found.',
+                  status: 500
+            }
+
+            return cb(err);
+
+        } else {
+            return cb(null, existingProject.tasks);
+        }
+    });
+
+}
+
 exports.addTask = (project_id, task, cb) => {
 
     Project.findOne({ _id: project_id }, (err, existingProject) => {

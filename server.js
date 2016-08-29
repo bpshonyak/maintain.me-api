@@ -74,6 +74,19 @@ app.get('/project/create', authenticate, function(req, res) {
 });
 
 // Task Routes
+app.post('/task/get', authenticate, function(req, res) {
+
+  var project_id = req.body.project_id;
+
+  projectController.getTasks(project_id, function (err, tasks) {
+    if(err)
+      res.json(err);
+
+    res.json(tasks);
+  });
+
+});
+
 app.post('/task/add', authenticate, function(req, res) {
 
   //TODO: Add task validation!
