@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+
 const Project = require('../models/Project');
 
 exports.createProject = (user_id, cb) => {
@@ -28,6 +30,8 @@ exports.addTask = (project_id, task, cb) => {
             return cb(err);
 
         } else {
+
+            task.id = 't' + crypto.randomBytes(20).toString('hex');
 
             existingProject.tasks.push(task);
 
