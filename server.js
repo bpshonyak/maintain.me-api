@@ -61,13 +61,32 @@ app.get('/project/create', authenticate, function(req, res) {
     var decoded = jwt.verify(token, process.env.SECRET);
 
     projectController.createProject(decoded.id, function (err, project) {
-      if(!err)
-        res.json(project);
+      if(err)
+        res.json(err);
+
+      res.json(project);
     });
 
   } catch(err) {
     res.json(err);
   }
+
+});
+
+// Task Routes
+app.post('/task/add', authenticate, function(req, res) {
+
+  //TODO: Add task validation!
+
+  var project_id = req.body.project_id;
+  var task = req.body.task;
+
+  projectController.addTask(project_id, task, function (err, tasks) {
+    if(err)
+      res.json(err);
+
+    res.json(tasks);
+  });
 
 });
 
