@@ -108,7 +108,12 @@ app.post('/task/delete', authenticate, function(req, res) {
   var project_id = req.body.project_id;
   var task_id = req.body.task_id;
 
-  //...
+  projectController.deleteTask(project_id, task_id, function (err, tasks) {
+    if(err)
+      res.json(err);
+
+    res.json(tasks);
+  });
 
 });
 

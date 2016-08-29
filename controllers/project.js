@@ -65,3 +65,44 @@ exports.addTask = (project_id, task, cb) => {
     });
 
 }
+
+exports.deleteTask = (project_id, task_id, cb) => {
+
+    Project.findOne({ _id: project_id }, (err, existingProject) => {
+
+        if (err)
+            return cb(err);
+
+        if (!existingProject) {
+
+            var err = {
+                  msg: 'Project could not be found.',
+                  status: 500
+            }
+
+            return cb(err);
+
+        } else {
+
+            var taskIndex = existingProject.tasks.findIndex(function (task) {
+                return task.id === task_id;
+            });
+
+            if (taskIndex === -1) {
+                var err = {
+                      msg: 'Task not found.',
+                      status: 500
+                }
+
+                return cb(err);
+            }
+
+            existingProject.tasks.splice(taskIndex, 1);
+
+            existingProject.save((err, project) => {
+                return cb(err, project.tasks);
+            });
+        }
+    });
+
+}
