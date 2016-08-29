@@ -3,6 +3,7 @@
  */
 const express = require('express');
 const expressJwt = require('express-jwt');
+const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -11,6 +12,11 @@ const dotenv = require('dotenv');
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
 dotenv.load({path: '.env'});
+
+/**
+ * Controllers
+ */
+ const projectController = require('./controllers/project');
 
 /**
  * JWT Authentication
@@ -45,7 +51,25 @@ app.get('/', function(req, res) {
     res.status(200).json({API: 'MAINTAIN.ME-API'});
 });
 
-app.get('/projects', authenticate, getProjects);
+// Project Routes
+app.get('/project/create', authenticate, function(req, res) {
+
+  var token = req.headers['authorization'].replace('bearer ', '');
+
+  try {
+
+    var decoded = jwt.verify(token, process.env.SECRET);
+
+    projectController.createProject(decoded.id, function (err, project) {
+      if(!err)
+        res.json(project);
+    });
+
+  } catch(err) {
+    res.json(err);
+  }
+
+});
 
 /**
  * Helper Funtions
